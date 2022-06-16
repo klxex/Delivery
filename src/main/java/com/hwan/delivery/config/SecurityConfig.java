@@ -46,8 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().configurationSource(corsConfigurationSource());
         http.authorizeRequests()
                 .antMatchers("/board/**").authenticated()
-                .antMatchers("/admin/**").authenticated()
-                .antMatchers("/**").permitAll();
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/authentication").authenticated()
+                .antMatchers("/**4`").permitAll();
 
         http.formLogin()
                 .loginProcessingUrl("/login")
